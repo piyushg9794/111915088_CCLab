@@ -1,0 +1,138 @@
+<style>
+    .report {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    
+    th,
+    td {
+        text-align: center;
+    }
+    
+    table {
+        width: 90vw;
+    }
+</style>
+
+<div class="report">
+    Hi
+    <%= user.firstName %>
+        <%= user.lastName %><br> Employee Number:
+            <%= user.employeeNumber %><br> Contact:
+                <%= user.contact %>
+                    <br>
+                    <br>
+                    <button class="btn btn-primary" onclick="add()" style="text-decoration: none;">+Add Employee</button>
+
+                    <form>
+
+
+                        <br>
+                        <div class="form-group">
+                            <label for="employeeNumber">Enter Employee Number</label>
+                            <input class="form-control" type="text" name="employeeNumber" id="employeeNumber" placeholder="Enter Employee Number" />
+                        </div>
+
+                        <br />
+
+
+
+                    </form>
+                    <button class="btn btn-primary" onclick="submit()" style="text-decoration: none;">Submit</button>
+
+                    <div id="status">
+
+                    </div>
+</div>
+
+
+<script>
+    var add = () => {
+        window.location.replace('/auth/add');
+    }
+
+
+
+    var submit = () => {
+
+        var data = {
+            "employeeNumber": document.getElementById("employeeNumber").value,
+        };
+        console.log(data);
+        var status = $("#status");
+
+        $.ajax({
+            type: "POST",
+            url: "/auth/report/5",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+
+            dataType: 'json',
+            success: (res) => {
+                console.log("success", res);
+
+
+
+
+
+                if (res.success) {
+
+                    if (res['user'] === null) {
+                        x = "No employee";
+                        ans = "<br />" + x;
+                    } else {
+                        var dob = res['user']['dob'].toString().split('T')[0].replace('-', '/').replace('-', '/');
+                        console.log(dob);
+                        var sal = res['salary']['monthlySalary'] * 12 + res["salary"]["yearlyBonus"];
+                        var x = "";
+
+                        var ans = "";
+
+                        x = '<table border="1px solid black">\
+                            <tr border="1">\
+                                <th>Emp No.</th>\
+                                <th>First Name</th>\
+                                <th>Last Name</th>\
+                                <th>DOB</th>\
+                                <th>Contact</th>\
+                                <th>Job Role</th>\
+                                <th>Monthly Salary</th>\
+                                <th>Yearly Bonus</th>\
+                                <th>Yearly Salary</th>\
+                            </tr>\
+                            <tr>\
+                                <td>' + res["user"]["employeeNumber"] + '</td>\
+                                <td>' + res["user"]["firstName"] + '</td>\
+                                <td>' + res["user"]["lastName"] + '</td>\
+                                <td>' + dob + '</td>\
+                                <td>' + res["user"]["contact"] + '</td>\
+                                <td>' + res["salary"]["jobRole"] + '</td>\
+                                <td>' + res["salary"]["monthlySalary"] + '</td>\
+                                <td>' + res["salary"]["yearlyBonus"] + '</td>\
+                                <td>' + sal + '</td>\
+                            </tr>\
+                        </table>';
+
+                        ans = "<br />" + x;
+                    }
+                    status.html(ans);
+
+                    // status.css("color", "green");
+
+                } else {
+                    status.html(res.msg);
+                    status.css("color", "red");
+                }
+
+
+
+            },
+            error: (err) => {
+                console.log("err", err.responseJSON.msg);
+                status.html(err.responseJSON.msg + "<br />" + err.responseJSON.err);
+                status.css("color", "red");
+
+            }
+        });
+    }
+</script>

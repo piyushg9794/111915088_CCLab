@@ -1,0 +1,23 @@
+.nav-link {
+    transition: all 0.2s !important;
+}
+
+.nav-link:hover {
+    color: rgb(138, 103, 133) !important;
+}
+
+
+/*     
+.dropdown-item {
+    background-color: rgb(138, 103, 133) !important;
+    margin-bottom: 10px;
+} */
+
+.dropdown-item {
+    color: rgb(25, 164, 122) !important;
+}
+
+.dropdown-item:hover {
+    background-color: rgb(25, 164, 122) !important;
+    color: white !important;
+}

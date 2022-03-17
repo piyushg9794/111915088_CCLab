@@ -1,0 +1,111 @@
+.card {
+    box-shadow: 0px 0px 20px rgb(89, 255, 125);
+    background-color: rgb(163, 163, 163);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 10%;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    z-index: 2;
+}
+
+.card-head {
+    font-size: 25px;
+    color: rgb(25, 164, 122);
+    text-align: center;
+    padding-bottom: 30px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.card-content {
+    color: rgb(0, 128, 21);
+}
+
+.about .container {
+    position: relative;
+    z-index: 10;
+}
+
+.about .content {
+    padding: 30px 30px 30px 0;
+}
+
+.about .content h3 {
+    font-weight: 700;
+    font-size: 34px;
+    margin-bottom: 30px;
+}
+
+.about .content p {
+    padding-top: 70px;
+    margin-bottom: 30px;
+}
+
+.about .content .about-btn {
+    padding: 8px 30px 9px 30px;
+    color: #fff;
+    border-radius: 50px;
+    transition: 0.3s;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    border: 2px solid #1588c1;
+}
+
+.about .content .about-btn i {
+    font-size: 16px;
+    padding-left: 5px;
+}
+
+.about .content .about-btn:hover {
+    background: #1588c1;
+    background: #1588c1;
+}
+
+.about .icon-boxes .icon-box {
+    margin-top: 30px;
+}
+
+.about .icon-boxes .icon-box i {
+    font-size: 40px;
+    color: #164363;
+    margin-bottom: 10px;
+}
+
+.iconbox {
+    margin-top: -50px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.icon {
+    color: rgb(138, 103, 133);
+    font-size: 70px !important;
+}
+
+.about .icon-boxes .icon-box h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+}
+
+.about .icon-boxes .icon-box p {
+    font-size: 15px;
+    color: #848484;
+}
+
+@media (max-width: 1200px) {
+    .about .content {
+        padding-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .about {
+        text-align: center;
+    }
+}

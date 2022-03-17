@@ -1,0 +1,20 @@
+#textsolutions .header {
+    background-image: linear-gradient(to bottom right, white, rgba(117, 19, 93, 0)), url('/images/1.jpg');
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+#textsolutions .top-left {
+    position: absolute;
+    top: 30%;
+    left: 10%;
+}
+
+#textsolutions .tl-big {
+    color: rgb(12, 101, 173);
+    font-size: 55px;
+    font-family: cursive;
+}

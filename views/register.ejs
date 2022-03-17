@@ -1,0 +1,115 @@
+<style>
+    .reg-form {
+        padding-left: 100px;
+        padding-right: 100px;
+        width: 100vw;
+    }
+    
+    h2 {
+        text-align: center;
+    }
+</style>
+
+<h2>Register</h2>
+
+<div class="reg-form">
+    <form>
+        <div class="form-group">
+            <label for="employeeNumber">Employee Number</label>
+            <input class="form-control" type="text" name="employeeNumber" id="employeeNumber" placeholder="Enter Employee Number" />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" id="password" placeholder="Enter Password" />
+        </div>
+        <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input class="form-control" type="text" name="firstName" id="firstName" placeholder="Enter First Name" />
+        </div>
+        <div class="form-group">
+            <label for="secondName">Last Name</label>
+            <input class="form-control" type="text" name="lastName" id="lastName" placeholder="Enter Last Name" />
+        </div>
+        <div class="form-group">
+            <label for="dob">DOB</label>
+            <input class="form-control" type="date" name="dob" id="dob" placeholder="Enter DOB" />
+        </div>
+        <div class="form-group">
+            <label for="contact">Contact</label>
+            <input class="form-control" type="text" name="contact" id="contact" placeholder="Enter Contact" />
+        </div>
+        <div class="form-group">
+            <label for="jobRole">Job Role</label>
+            <input class="form-control" type="text" name="jobRole" id="jobRole" placeholder="Enter Job Role" />
+        </div>
+        <div class="form-group">
+            <label for="monthlySalary">Monthly Salary</label>
+            <input class="form-control" type="number" name="monthlySalary" id="monthlySalary" placeholder="Enter Monthly Salary" />
+        </div>
+        <div class="form-group">
+            <label for="yearlyBonus">Yearly Bonus</label>
+            <input class="form-control" type="number" name="yearlyBonus" id="yearlyBonus" placeholder="Enter Yearly Bonus" />
+        </div>
+        <br />
+
+    </form>
+    <button class="btn btn-primary" onclick="register()" style="text-decoration: none;">Register</button>
+
+    <div id="status"></div>
+
+</div>
+
+
+
+
+<script>
+    var register = () => {
+        var data = {
+            'employeeNumber': document.getElementById("employeeNumber").value,
+            'password': document.getElementById("password").value,
+            'firstName': document.getElementById("firstName").value,
+            'lastName': document.getElementById("lastName").value,
+
+            'dob': document.getElementById("dob").value,
+            'contact': document.getElementById("contact").value,
+            'jobRole': document.getElementById("jobRole").value,
+            'monthlySalary': document.getElementById("monthlySalary").value,
+            'yearlyBonus': document.getElementById("yearlyBonus").value
+        };
+        console.log(data);
+
+        var status = $("#status");
+
+        $.ajax({
+            type: "POST",
+            url: "/auth/register",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+
+            dataType: 'json',
+            success: (res) => {
+                console.log("success", res);
+
+                if (res.success) {
+
+                    status.html(res.msg);
+                    status.css("color", "green");
+                    window.location.replace('/');
+                } else {
+                    status.html(res.msg);
+                    status.css("color", "red");
+                }
+
+
+
+            },
+            error: (err) => {
+                console.log("err", err.responseJSON.msg);
+                status.html(err.responseJSON.msg + "<br />" + err.responseJSON.err);
+                status.css("color", "red");
+
+            }
+        })
+    }
+</script>
